@@ -105,6 +105,12 @@ Travis uses a .travis.yml file in the root of your repository to learn about you
 |deploy_to_forge\\**enabled**|Allows you to enable or disable automatic forge deployments. Default is true|
 |deploy_to_forge\\**tag_regex**|Allows you to use a regular expression to define which tags will trigger a deployment.  The default is `^v\d`|
 |before_deploy|An array which can allow a user to specify the commands to run before kicking off a deployment. See [https://docs.travis-ci.com/user/deployment/releases/#setting-the-tag-at-deployment-time].|
+|use_litmus|Configures travis to be able to use Litmus for acceptance testing jobs. By default, acceptance tests are ran in parallel using docker provisioner on platforms defined in provision.yaml (travis_deb, travis_el) file inside module, using rvm 2.5.3. Sub keys are `enabled`, `provision_list`, `puppet_collection`, `rvm`, `install_wget` which are detailed below.|
+|use_litmus\\**enabled**|Allows you to enable or disable automatic acceptance test running using litmus testing tool . Default is false|
+|use_litmus\\**puppet_collection**|Allows you to specify the puppet version under test. Default test are ran on puppet 5 and puppet 6|
+|use_litmus\\**provision_list**|Allows you to specify the platforms list under test. Default test are ran on platformes defined in provision.yaml file under _travis_deb_ and _travis_el_|
+|use_litmus\\**rvm**|Allows you to specify the ruby version under test. Default is set to _2.5.3_|
+|use_litmus\\**install_wget**|Allows you to enable automatic installation of wget on the platform under test. We need this when installing agent on travis_deb platforms|
 |user|This string needs to be set to the Puppet Forge user name. To enable deployment the secure key also needs to be set.|
 |secure|This string needs to be set to the encrypted password to enable deployment. See [https://docs.travis-ci.com/user/encryption-keys/#usage](https://docs.travis-ci.com/user/encryption-keys/#usage) for instructions on how to encrypt your password.|
 
